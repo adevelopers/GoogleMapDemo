@@ -1,0 +1,252 @@
+{
+    "geocoded_waypoints" : [
+                            {
+                            "geocoder_status" : "OK",
+                            "place_id" : "ChIJc8s1xlNKtUYRRHes7C4uJqQ",
+                            "types" : [ "street_address" ]
+                            },
+                            {
+                            "geocoder_status" : "OK",
+                            "place_id" : "ChIJpw3dnTdKtUYRVtjwdzGW4Wc",
+                            "types" : [ "street_address" ]
+                            }
+                            ],
+    "routes" : [
+                {
+                "bounds" : {
+                "northeast" : {
+                "lat" : 55.7634805,
+                "lng" : 37.61066150000001
+                },
+                "southwest" : {
+                "lat" : 55.7500892,
+                "lng" : 37.5908416
+                }
+                },
+                "copyrights" : "Картографические данные © 2018 Google",
+                "legs" : [
+                          {
+                          "distance" : {
+                          "text" : "2,4 км",
+                          "value" : 2396
+                          },
+                          "duration" : {
+                          "text" : "10 мин.",
+                          "value" : 574
+                          },
+                          "end_address" : "Малый Патриарший переулок, 5 строение 1, Москва, Россия, 123001",
+                          "end_location" : {
+                          "lat" : 55.7634805,
+                          "lng" : 37.5912838
+                          },
+                          "start_address" : "ул. Моховая, 6, Москва, Россия, 119019",
+                          "start_location" : {
+                          "lat" : 55.7500892,
+                          "lng" : 37.6094398
+                          },
+                          "steps" : [
+                                     {
+                                     "distance" : {
+                                     "text" : "0,2 км",
+                                     "value" : 242
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 43
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.75215310000001,
+                                     "lng" : 37.61066150000001
+                                     },
+                                     "html_instructions" : "Направляйтесь на \u003cb\u003eсевер\u003c/b\u003e по \u003cb\u003eул. Моховая\u003c/b\u003e в сторону \u003cb\u003eул. Воздвиженка\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eУчастки этой дороги могут быть перекрыты в определенные дни или часы\u003c/div\u003e",
+                                     "polyline" : {
+                                     "points" : "augsI_rpdFm@UoB}@UMsAs@{@e@[Q{@e@"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7500892,
+                                     "lng" : 37.6094398
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "0,6 км",
+                                     "value" : 625
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 76
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7529881,
+                                     "lng" : 37.6010819
+                                     },
+                                     "html_instructions" : "Плавный поворот \u003cb\u003eналево\u003c/b\u003e на \u003cb\u003eул. Воздвиженка\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eУчастки этой дороги могут быть перекрыты в определенные дни или часы\u003c/div\u003e",
+                                     "maneuver" : "turn-slight-left",
+                                     "polyline" : {
+                                     "points" : "}ahsIsypdFUFQHCBMPENAZ?N?HCd@KzDKrDIjCErBEbBALIzCM`HGjCClACtAAJAnAAp@ChC"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.75215310000001,
+                                     "lng" : 37.61066150000001
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "0,5 км",
+                                     "value" : 539
+                                     },
+                                     "duration" : {
+                                     "text" : "2 мин.",
+                                     "value" : 138
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7575703,
+                                     "lng" : 37.59872
+                                     },
+                                     "html_instructions" : "Поверните \u003cb\u003eнаправо\u003c/b\u003e на \u003cb\u003eбул. Никитский\u003c/b\u003e",
+                                     "maneuver" : "turn-right",
+                                     "polyline" : {
+                                     "points" : "eghsIw}ndFe@@O@_DHu@BO?O@IBKBKBGBQLEDGBKJKR_Ah@mCjBi@^YRe@^UNYTGDGDEDe@`@{@l@SFQ@"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7529881,
+                                     "lng" : 37.6010819
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "52 м",
+                                     "value" : 52
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 46
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7577556,
+                                     "lng" : 37.5979845
+                                     },
+                                     "html_instructions" : "Плавный поворот \u003cb\u003eналево\u003c/b\u003e на \u003cb\u003eпл. Никитские Ворота\u003c/b\u003e",
+                                     "maneuver" : "turn-slight-left",
+                                     "polyline" : {
+                                     "points" : "ycisI_ondFQb@GZCPCZCd@"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7575703,
+                                     "lng" : 37.59872
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "0,2 км",
+                                     "value" : 151
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 51
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7580135,
+                                     "lng" : 37.5956169
+                                     },
+                                     "html_instructions" : "Продолжайте движение по \u003cb\u003eул. Малая Никитская\u003c/b\u003e",
+                                     "polyline" : {
+                                     "points" : "_eisIkjndFE`AIxAGfACXG|@MzC"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7577556,
+                                     "lng" : 37.5979845
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "0,6 км",
+                                     "value" : 569
+                                     },
+                                     "duration" : {
+                                     "text" : "2 мин.",
+                                     "value" : 117
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7620179,
+                                     "lng" : 37.5908416
+                                     },
+                                     "html_instructions" : "Поверните \u003cb\u003eнаправо\u003c/b\u003e на \u003cb\u003eул. Спиридоновка\u003c/b\u003e",
+                                     "maneuver" : "turn-right",
+                                     "polyline" : {
+                                     "points" : "qfisIs{mdFy@]]MMCEBGBCDKPEJEHM`@c@xAQb@Q`@MTIJEHGFYRi@`@YRmAx@]V_@VQPONMPKLc@v@k@bAm@vAu@rBKXKVKVWv@"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7580135,
+                                     "lng" : 37.5956169
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "0,1 км",
+                                     "value" : 126
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 53
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.76284219999999,
+                                     "lng" : 37.5922184
+                                     },
+                                     "html_instructions" : "Поверните \u003cb\u003eнаправо\u003c/b\u003e на \u003cb\u003eпер. Большой Патриарший\u003c/b\u003e",
+                                     "maneuver" : "turn-right",
+                                     "polyline" : {
+                                     "points" : "s_jsIw}ldFmAeC[m@Ua@Q[Qa@"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.7620179,
+                                     "lng" : 37.5908416
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     },
+                                     {
+                                     "distance" : {
+                                     "text" : "92 м",
+                                     "value" : 92
+                                     },
+                                     "duration" : {
+                                     "text" : "1 мин.",
+                                     "value" : 50
+                                     },
+                                     "end_location" : {
+                                     "lat" : 55.7634805,
+                                     "lng" : 37.5912838
+                                     },
+                                     "html_instructions" : "Поверните \u003cb\u003eналево\u003c/b\u003e на \u003cb\u003eпер. Малый Патриарший\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eПункт назначения будет справа\u003c/div\u003e",
+                                     "maneuver" : "turn-left",
+                                     "polyline" : {
+                                     "points" : "wdjsIkfmdFiAlBu@lA"
+                                     },
+                                     "start_location" : {
+                                     "lat" : 55.76284219999999,
+                                     "lng" : 37.5922184
+                                     },
+                                     "travel_mode" : "DRIVING"
+                                     }
+                                     ],
+                          "traffic_speed_entry" : [],
+                          "via_waypoint" : []
+                          }
+                          ],
+                "overview_polyline" : {
+                "points" : "augsI_rpdF}CsAiBaAwAw@{@e@UFULMPENAj@Cn@g@nRGpBW|LQzHC`CChCe@@oDJeABYDWFg@ZW^mEtC_CbBo@f@aBnAe@HY~@Gl@[hGKvAMzCy@]k@QMF[l@q@zBc@dAe@r@kDbC}@n@a@`@Y^oAzB{B|Fc@nAiBsDg@}@Qa@iAlBu@lA"
+                },
+                "summary" : "ул. Воздвиженка",
+                "warnings" : [],
+                "waypoint_order" : []
+                }
+                ],
+    "status" : "OK"
+}
