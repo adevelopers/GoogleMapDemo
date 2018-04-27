@@ -7,6 +7,9 @@ Google Maps Demo project on Swift
 - [x] Route between two geo points  
 - [x] Google Map in custom view  
 - [x] Zoom by slider  
+- [ ] As User I want to add some points 
+- [ ] As User I want to add point from current location 
 
 # Todo:
-- Need to refactor
+- [ ] Need to refactor
+
