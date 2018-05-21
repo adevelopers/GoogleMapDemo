@@ -19,6 +19,8 @@
 		FA32B2A620921BF500A8A189 /* ServicePlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B2A520921BF500A8A189 /* ServicePlaces.swift */; };
 		FA32B2A92092389400A8A189 /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = FA32B2A82092389400A8A189 /* response.json */; };
 		FA32B2AB2092408B00A8A189 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B2AA2092408B00A8A189 /* RouteCreator.swift */; };
+		FA32EC6320B30AF6001F1237 /* GeoPointsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32EC6220B30AF6001F1237 /* GeoPointsListViewController.swift */; };
+		FA32EC6620B30BB9001F1237 /* GeoPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32EC6520B30BB9001F1237 /* GeoPointsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		FA32B2A520921BF500A8A189 /* ServicePlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePlaces.swift; sourceTree = "<group>"; };
 		FA32B2A82092389400A8A189 /* response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
 		FA32B2AA2092408B00A8A189 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
+		FA32EC6220B30AF6001F1237 /* GeoPointsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPointsListViewController.swift; sourceTree = "<group>"; };
+		FA32EC6520B30BB9001F1237 /* GeoPointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPointsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +134,15 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		FA32EC6020B309E6001F1237 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FA32EC6420B30B00001F1237 /* GeoPointsList */,
 				FA32EC6120B30A0D001F1237 /* MapViewController */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		FA32EC6120B30A0D001F1237 /* MapViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,8 +280,10 @@
 				FA029A8C20924474002BF377 /* Enums.swift in Sources */,
 				FA32B29320920AF100A8A189 /* AppDelegate.swift in Sources */,
 				FA029A9020924681002BF377 /* LegModel.swift in Sources */,
+				FA32EC6320B30AF6001F1237 /* GeoPointsListViewController.swift in Sources */,
 				FA32B2A620921BF500A8A189 /* ServicePlaces.swift in Sources */,
 				FA029A8E2092460B002BF377 /* PathInformationModel.swift in Sources */,
+				FA32EC6620B30BB9001F1237 /* GeoPointsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
