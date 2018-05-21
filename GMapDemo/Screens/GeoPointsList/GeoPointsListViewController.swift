@@ -1,3 +1,4 @@
+
 //
 //  GeoPointsListViewController.swift
 //  GMapDemo
@@ -7,11 +8,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class GeoPointsListViewController: UIViewController {
     
     var viewModel: GeoPointsViewModel!
     var tableView: UITableView!
+    var lm:CLLocationManager!
     
     convenience init(viewModel: GeoPointsViewModel) {
         self.init()
@@ -25,8 +28,43 @@ class GeoPointsListViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultCell")
         tableView.dataSource = self
         view.addSubview(tableView)
+        
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addUserLocation))
+        navigationItem.rightBarButtonItems = [barButtonItem]
+        
+        lm = CLLocationManager()
+        lm.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        lm.delegate = self
+        lm.requestAlwaysAuthorization()
+        lm.requestWhenInUseAuthorization()
     }
     
+    @objc func addUserLocation() {
+        lm.requestLocation()
+        print("add user location")
+    }
+    
+}
+
+
+extension GeoPointsListViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let first = locations.first {
+            
+            let geoPoint = GeoPoint(latitude: first.coordinate.latitude,
+                     longitude: first.coordinate.longitude,
+                     placeDescription: PlaceDescription(title: "User point",
+                                                        description: "User description")
+            )
+            
+            viewModel.list.append(geoPoint)
+            tableView.reloadData()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("\(error.localizedDescription)")
+    }
 }
 
 extension GeoPointsListViewController: UITableViewDataSource {
