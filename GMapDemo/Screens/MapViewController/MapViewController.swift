@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var sliderView: UISlider!
@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        view.backgroundColor = .blue
 
         initMap()
         
@@ -57,6 +60,17 @@ class ViewController: UIViewController {
         })
         
         
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(showGeoPointsViewController))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func showGeoPointsViewController() {
+      print("swift to left or from left")
+      let model = GeoPointsViewModel(points: ServicePlaces().getList())
+      let geoPointsListViewController = GeoPointsListViewController(viewModel: model)
+      navigationController?.pushViewController(geoPointsListViewController, animated: true)
     }
     
     func addRoute() {
