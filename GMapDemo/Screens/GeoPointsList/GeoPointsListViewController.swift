@@ -59,6 +59,14 @@ class GeoPointsListViewController: UIViewController {
             realm.add(pointRecord)
         }
         
+    func removeRecord(by index: Int) {
+        let item = viewModel.list[index]
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(item)
+        }
+        viewModel.list.remove(at: index)
+        tableView.reloadData()
     }
     
 }
