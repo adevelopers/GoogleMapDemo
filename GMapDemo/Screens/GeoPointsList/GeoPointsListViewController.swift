@@ -16,6 +16,7 @@ class GeoPointsListViewController: UIViewController {
     var viewModel: GeoPointsViewModel!
     var tableView: UITableView!
     var lm:CLLocationManager!
+    var activityIndicatorAlert: UIAlertController?
     
     convenience init(viewModel: GeoPointsViewModel) {
         self.init()
@@ -41,6 +42,13 @@ class GeoPointsListViewController: UIViewController {
     }
     
     @objc func addUserLocation() {
+        activityIndicatorAlert = UIAlertController(title: NSLocalizedString("Loading", comment: ""), message: NSLocalizedString("PleaseWait", comment: "") + "...", preferredStyle: UIAlertControllerStyle.alert)
+        activityIndicatorAlert!.addActivityIndicator()
+        var topController:UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+        while ((topController.presentedViewController) != nil) {
+            topController = topController.presentedViewController!
+        }
+        topController.present(activityIndicatorAlert!, animated:true, completion:nil)
         lm.requestLocation()
     }
     
@@ -67,6 +75,8 @@ extension GeoPointsListViewController: CLLocationManagerDelegate {
             
             viewModel.list.append(geoPoint)
             tableView.reloadData()
+            activityIndicatorAlert!.dismissActivityIndicator()
+            activityIndicatorAlert = nil
         }
     }
     
@@ -85,5 +95,25 @@ extension GeoPointsListViewController: UITableViewDataSource {
         let point = viewModel.list[indexPath.row]
         cell.textLabel?.text = point.toString() + " " + point.placeDescription.title
         return cell
+    }
+}
+extension UIAlertController {
+    
+    private struct ActivityIndicatorData {
+        static var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    }
+    
+    func addActivityIndicator() {
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 40,height: 40)
+        ActivityIndicatorData.activityIndicator.color = UIColor.blue
+        ActivityIndicatorData.activityIndicator.startAnimating()
+        vc.view.addSubview(ActivityIndicatorData.activityIndicator)
+        self.setValue(vc, forKey: "contentViewController")
+    }
+    
+    func dismissActivityIndicator() {
+        ActivityIndicatorData.activityIndicator.stopAnimating()
+        self.dismiss(animated: false)
     }
 }
