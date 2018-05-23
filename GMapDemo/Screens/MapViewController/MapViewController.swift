@@ -90,9 +90,19 @@ class MapViewController: UIViewController {
       navigationController?.pushViewController(geoPointsListViewController, animated: true)
     }
     
-    func addRoute() {
-
-        
+    func readFromRealm(completion: @escaping ()->Void) {
+        DispatchQueue.main.async {
+            autoreleasepool {
+                
+                let realm = try! Realm()
+                let records = realm.objects(GeoPointRecord.self)
+                records.forEach {
+                    self.points.append($0.toPoint())
+                }
+               
+                completion()
+            }
+        }
     }
     
     func initMap() {
