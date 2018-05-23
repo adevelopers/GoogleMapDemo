@@ -24,20 +24,11 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
 
-        points = ServicePlaces().getList()
-        
         DispatchQueue.main.async {
-                
             autoreleasepool {
-                
-                let realm = try! Realm()
-                let records = realm.objects(GeoPointRecord.self)
-                records.forEach {
-                    self.points.append($0.toPoint())
-                }
-                
+                self.loadPoints()
                 self.initMap()
                 self.handleRoutes()
             }
@@ -46,6 +37,19 @@ class MapViewController: UIViewController {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(showGeoPointsViewController))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateMap()
+    }
+    
+    func loadPoints() {
+        let realm = try! Realm()
+        let records = realm.objects(GeoPointRecord.self)
+        points.removeAll()
+        records.forEach {
+            self.points.append($0.toPoint())
+        }
     }
     
     func handleRoutes() {
@@ -77,22 +81,39 @@ class MapViewController: UIViewController {
                                             }
                                             
         },
-                                           failureCallBack: {_ in
+        failureCallBack: {_ in
                                             print("fail callback in route creator")
                                             
         })
     }
     
     @objc func showGeoPointsViewController() {
-      print("swift to left or from left")
-      let model = GeoPointsViewModel(points: ServicePlaces().getList())
-      let geoPointsListViewController = GeoPointsListViewController(viewModel: model)
-      navigationController?.pushViewController(geoPointsListViewController, animated: true)
+        print("swift to left or from left")
+        let realm = try! Realm()
+        var records: [GeoPointRecord] = []
+        let items = realm.objects(GeoPointRecord.self)
+        items.forEach {
+            records.append($0)
+        }
+        
+        let model = GeoPointsViewModel(points: records)
+        let geoPointsListViewController = GeoPointsListViewController(viewModel: model)
+        navigationController?.pushViewController(geoPointsListViewController, animated: true)
     }
     
-    func addRoute() {
-
-        
+    func readFromRealm(completion: @escaping ()->Void) {
+        DispatchQueue.main.async {
+            autoreleasepool {
+                
+                let realm = try! Realm()
+                let records = realm.objects(GeoPointRecord.self)
+                records.forEach {
+                    self.points.append($0.toPoint())
+                }
+               
+                completion()
+            }
+        }
     }
     
     func initMap() {
@@ -109,6 +130,16 @@ class MapViewController: UIViewController {
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
         
+        updateMap()
+    }
+    
+    func updateMap() {
+        loadPoints()
+        removeAllMarkers()
+        addMarkers()
+    }
+    
+    func addMarkers() {
         for point in points {
             let marker = GMSMarker()
             marker.position = point.postion()
@@ -117,6 +148,11 @@ class MapViewController: UIViewController {
             marker.map = mapView
         }
     }
+    
+    func removeAllMarkers() {
+        mapView.clear()
+    }
+    
 
 }
 
