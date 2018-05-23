@@ -92,10 +92,17 @@ class MapViewController: UIViewController {
     }
     
     @objc func showGeoPointsViewController() {
-      print("swift to left or from left")
-      let model = GeoPointsViewModel(points: ServicePlaces().getList())
-      let geoPointsListViewController = GeoPointsListViewController(viewModel: model)
-      navigationController?.pushViewController(geoPointsListViewController, animated: true)
+        print("swift to left or from left")
+        let realm = try! Realm()
+        var records: [GeoPointRecord] = []
+        let items = realm.objects(GeoPointRecord.self)
+        items.forEach {
+            records.append($0)
+        }
+        
+        let model = GeoPointsViewModel(points: records)
+        let geoPointsListViewController = GeoPointsListViewController(viewModel: model)
+        navigationController?.pushViewController(geoPointsListViewController, animated: true)
     }
     
     func readFromRealm(completion: @escaping ()->Void) {
