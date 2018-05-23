@@ -21,6 +21,7 @@
 		FA32B2AB2092408B00A8A189 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B2AA2092408B00A8A189 /* RouteCreator.swift */; };
 		FA32EC6320B30AF6001F1237 /* GeoPointsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32EC6220B30AF6001F1237 /* GeoPointsListViewController.swift */; };
 		FA32EC6620B30BB9001F1237 /* GeoPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32EC6520B30BB9001F1237 /* GeoPointsViewModel.swift */; };
+		FA88F0AA20B479EF00F21CD9 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88F0A920B479EF00F21CD9 /* GeoPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FA32B2AA2092408B00A8A189 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
 		FA32EC6220B30AF6001F1237 /* GeoPointsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPointsListViewController.swift; sourceTree = "<group>"; };
 		FA32EC6520B30BB9001F1237 /* GeoPointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPointsViewModel.swift; sourceTree = "<group>"; };
+		FA88F0A920B479EF00F21CD9 /* GeoPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +107,11 @@
 			isa = PBXGroup;
 			children = (
 				FA32B29220920AF100A8A189 /* AppDelegate.swift */,
+				FA32B2A420921BDB00A8A189 /* Service */,
+				FA88F0AB20B479FD00F21CD9 /* Models */,
 				FA32EC6020B309E6001F1237 /* Screens */,
 				FA029A8A2092445B002BF377 /* Export */,
 				FA32B2A72092387400A8A189 /* Data */,
-				FA32B2A420921BDB00A8A189 /* Service */,
 				FA32B29920920AF200A8A189 /* Assets.xcassets */,
 				FA32B29620920AF100A8A189 /* Main.storyboard */,
 				FA32B29B20920AF200A8A189 /* LaunchScreen.storyboard */,
@@ -160,6 +163,14 @@
 			path = GeoPointsList;
 			sourceTree = "<group>";
 		};
+		FA88F0AB20B479FD00F21CD9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA88F0A920B479EF00F21CD9 /* GeoPoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,6 +183,7 @@
 				FA32B28C20920AF100A8A189 /* Frameworks */,
 				FA32B28D20920AF100A8A189 /* Resources */,
 				F64F301C8F56A34BD12E7D9A /* [CP] Copy Pods Resources */,
+				FB96C434BA33A198CAF6EA71 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,6 +280,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GMapDemo/Pods-GMapDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FB96C434BA33A198CAF6EA71 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GMapDemo/Pods-GMapDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GMapDemo/Pods-GMapDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -279,6 +311,7 @@
 				FA32B29520920AF100A8A189 /* MapViewController.swift in Sources */,
 				FA029A8C20924474002BF377 /* Enums.swift in Sources */,
 				FA32B29320920AF100A8A189 /* AppDelegate.swift in Sources */,
+				FA88F0AA20B479EF00F21CD9 /* GeoPoint.swift in Sources */,
 				FA029A9020924681002BF377 /* LegModel.swift in Sources */,
 				FA32EC6320B30AF6001F1237 /* GeoPointsListViewController.swift in Sources */,
 				FA32B2A620921BF500A8A189 /* ServicePlaces.swift in Sources */,
@@ -431,10 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RF42FG352F;
 				INFOPLIST_FILE = GMapDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = adeveloper.GMapDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -450,10 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RF42FG352F;
 				INFOPLIST_FILE = GMapDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = adeveloper.GMapDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
