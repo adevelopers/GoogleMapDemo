@@ -48,6 +48,14 @@ class MapViewController: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
+    func loadPoints() {
+        let realm = try! Realm()
+        let records = realm.objects(GeoPointRecord.self)
+        points.removeAll()
+        records.forEach {
+            self.points.append($0.toPoint())
+        }
+    }
     func handleRoutes() {
         
         guard
