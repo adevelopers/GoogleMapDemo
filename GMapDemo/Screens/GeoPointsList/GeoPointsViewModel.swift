@@ -9,9 +9,9 @@
 import Foundation
 
 class GeoPointsViewModel {
-    var list: [GeoPoint] = []
+    var list: [GeoPointRecord] = []
     
-    init(points: [GeoPoint]) {
+    init(points: [GeoPointRecord]) {
         list = points
     }
 }
