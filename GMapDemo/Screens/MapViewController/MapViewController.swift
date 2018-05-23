@@ -117,6 +117,11 @@ class MapViewController: UIViewController {
             marker.map = mapView
         }
     }
+    
+    func removeAllMarkers() {
+        mapView.clear()
+    }
+    
 
 }
 
