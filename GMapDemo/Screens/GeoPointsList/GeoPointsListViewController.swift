@@ -9,6 +9,7 @@
 
 import UIKit
 import CoreLocation
+import RealmSwift
 
 class GeoPointsListViewController: UIViewController {
     
@@ -41,7 +42,15 @@ class GeoPointsListViewController: UIViewController {
     
     @objc func addUserLocation() {
         lm.requestLocation()
-        print("add user location")
+    }
+    
+    func saveLocationToRealm(pointRecord: GeoPointRecord) {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(pointRecord)
+        }
+        
     }
     
 }
@@ -49,13 +58,12 @@ class GeoPointsListViewController: UIViewController {
 
 extension GeoPointsListViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let first = locations.first {
+        if let location = locations.first {
+            let geoPoint = GeoPoint(point: location.coordinate)
             
-            let geoPoint = GeoPoint(latitude: first.coordinate.latitude,
-                     longitude: first.coordinate.longitude,
-                     placeDescription: PlaceDescription(title: "User point",
-                                                        description: "User description")
-            )
+            let geoPointRecord = GeoPointRecord()
+            geoPointRecord.setup(by: geoPoint)
+            saveLocationToRealm(pointRecord: geoPointRecord)
             
             viewModel.list.append(geoPoint)
             tableView.reloadData()

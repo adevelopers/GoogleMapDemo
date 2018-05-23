@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import RealmSwift
 
 class MapViewController: UIViewController {
     
@@ -18,15 +19,37 @@ class MapViewController: UIViewController {
         mapView.animate(toZoom: sender.value)
     }
     
+    var points: [GeoPoint] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         view.backgroundColor = .blue
 
-        initMap()
+        points = ServicePlaces().getList()
         
-        let points = ServicePlaces().getList()
+        DispatchQueue.main.async {
+                
+            autoreleasepool {
+                
+                let realm = try! Realm()
+                let records = realm.objects(GeoPointRecord.self)
+                records.forEach {
+                    self.points.append($0.toPoint())
+                }
+                
+                self.initMap()
+                self.handleRoutes()
+            }
+        }
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(showGeoPointsViewController))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    func handleRoutes() {
+        
         guard
             let first = points.first,
             let second = points.last
@@ -39,31 +62,25 @@ class MapViewController: UIViewController {
                                            waypoints: nil,
                                            successCallBack: { dict in
                                             let routes = dict["routes"] as! [[String:AnyObject]]
-                                                for route in routes
-                                                {
-                                                    DispatchQueue.main.async {
-                                                        let routeOverviewPolyline = route["overview_polyline"] as! [String : String]
-                                                        if let points = routeOverviewPolyline["points"] {
-                                                            let path = GMSPath(fromEncodedPath: points)
-                                                            let polyline = GMSPolyline(path: path)
-                                                            polyline.strokeColor = .red
-                                                            polyline.strokeWidth = 4
-                                                            polyline.map = self.mapView
-                                                        }
+                                            for route in routes
+                                            {
+                                                DispatchQueue.main.async {
+                                                    let routeOverviewPolyline = route["overview_polyline"] as! [String : String]
+                                                    if let points = routeOverviewPolyline["points"] {
+                                                        let path = GMSPath(fromEncodedPath: points)
+                                                        let polyline = GMSPolyline(path: path)
+                                                        polyline.strokeColor = .red
+                                                        polyline.strokeWidth = 4
+                                                        polyline.map = self.mapView
                                                     }
                                                 }
+                                            }
                                             
         },
                                            failureCallBack: {_ in
-                                                print("fail callback in route creator")
+                                            print("fail callback in route creator")
                                             
         })
-        
-        
-        
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(showGeoPointsViewController))
-        swipeGesture.direction = .right
-        view.addGestureRecognizer(swipeGesture)
     }
     
     @objc func showGeoPointsViewController() {
@@ -79,7 +96,6 @@ class MapViewController: UIViewController {
     }
     
     func initMap() {
-        let points = ServicePlaces().getList()
         
         guard
             let first = points.first

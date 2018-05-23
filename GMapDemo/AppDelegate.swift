@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,12 +17,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+     
         GMSServices.provideAPIKey("AIzaSyCVYL99yIj-AAK3NwYi2s51RHcoRLIuvHw")
-        
+        setUpRealm()
      
         return true
     }
 
 }
 
+extension AppDelegate {
+    
+    func setUpRealm() {
+        performRealmMigration()
+        printRealmPath()
+    }
+    
+    private func performRealmMigration() {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 1 { // the old (default) version is 0
+                    
+                }
+        }
+        )
+    }
+    
+    private func printRealmPath() {
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "Realm not found")
+    }
+}

@@ -8,6 +8,7 @@
 
 import Foundation
 import GoogleMaps
+import RealmSwift
 
 
 struct PlaceDescription {
@@ -15,29 +16,13 @@ struct PlaceDescription {
     let description: String
 }
 
-struct GeoPoint {
-    let latitude: CLLocationDegrees
-    let longitude: CLLocationDegrees
-    let placeDescription: PlaceDescription
-    
-    func postion() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-    }
-    
-    func toString() -> String {
-        return "\(latitude),\(longitude)"
-    }
-    
-}
 
 class ServicePlaces {
     
     func getList() -> [GeoPoint]{
         return [
-            GeoPoint(latitude: 55.75, longitude: 37.61, placeDescription: PlaceDescription(title: "Первое", description: "Центральное место") ),
-            GeoPoint(latitude: 55.763852, longitude: 37.592105,
-                     placeDescription: PlaceDescription(title: "Второе", description: "Патриаршие пруды\nХорошее место")
-                     )
+            GeoPoint(55.75, 37.61, title: "Первое", desc: "Центральное место"),
+            GeoPoint(55.763852,  37.592105, title: "Второе", desc: "Патриаршие пруды\nХорошее место"),
         ]
     }
     
