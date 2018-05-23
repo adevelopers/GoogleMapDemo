@@ -127,6 +127,16 @@ class MapViewController: UIViewController {
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
         
+        updateMap()
+    }
+    
+    func updateMap() {
+        loadPoints()
+        removeAllMarkers()
+        addMarkers()
+    }
+    
+    func addMarkers() {
         for point in points {
             let marker = GMSMarker()
             marker.position = point.postion()
