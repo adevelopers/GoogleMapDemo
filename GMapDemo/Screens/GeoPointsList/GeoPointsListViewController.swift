@@ -29,6 +29,7 @@ class GeoPointsListViewController: UIViewController {
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultCell")
         tableView.dataSource = self
+        tableView.delegate = self
         view.addSubview(tableView)
         
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addUserLocation))
@@ -103,6 +104,19 @@ extension GeoPointsListViewController: UITableViewDataSource {
         let point = viewModel.list[indexPath.row]
         cell.textLabel?.text = point.toString() + " " + point.placeDescription.title
         return cell
+    }
+}
+
+extension GeoPointsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Del") {action, index in
+            self.removeRecord(by: index.row)
+        }
+        
+        deleteAction.backgroundColor = .red
+        return [deleteAction]
     }
 }
 extension UIAlertController {
