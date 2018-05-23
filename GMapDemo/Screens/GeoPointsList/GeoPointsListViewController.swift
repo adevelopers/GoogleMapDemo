@@ -15,7 +15,7 @@ class GeoPointsListViewController: UIViewController {
     
     var viewModel: GeoPointsViewModel!
     var tableView: UITableView!
-    var lm:CLLocationManager!
+    var lm: CLLocationManager!
     var activityIndicatorAlert: UIAlertController?
     
     convenience init(viewModel: GeoPointsViewModel) {
@@ -50,6 +50,7 @@ class GeoPointsListViewController: UIViewController {
             topController = topController.presentedViewController!
         }
         topController.present(activityIndicatorAlert!, animated:true, completion:nil)
+        
         lm.requestLocation()
     }
     
@@ -59,7 +60,8 @@ class GeoPointsListViewController: UIViewController {
         try! realm.write {
             realm.add(pointRecord)
         }
-        
+    }
+    
     func removeRecord(by index: Int) {
         let item = viewModel.list[index]
         let realm = try! Realm()
@@ -75,6 +77,7 @@ class GeoPointsListViewController: UIViewController {
 
 extension GeoPointsListViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if let location = locations.first {
             let geoPoint = GeoPoint(point: location.coordinate)
             
@@ -82,8 +85,10 @@ extension GeoPointsListViewController: CLLocationManagerDelegate {
             geoPointRecord.setup(by: geoPoint)
             saveLocationToRealm(pointRecord: geoPointRecord)
             
-            viewModel.list.append(geoPoint)
+            
+            viewModel.list.append(geoPointRecord)
             tableView.reloadData()
+            
             activityIndicatorAlert!.dismissActivityIndicator()
             activityIndicatorAlert = nil
         }
@@ -101,7 +106,7 @@ extension GeoPointsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
-        let point = viewModel.list[indexPath.row]
+        let point = viewModel.list[indexPath.row].toPoint()
         cell.textLabel?.text = point.toString() + " " + point.placeDescription.title
         return cell
     }
@@ -119,6 +124,7 @@ extension GeoPointsListViewController: UITableViewDelegate {
         return [deleteAction]
     }
 }
+
 extension UIAlertController {
     
     private struct ActivityIndicatorData {
