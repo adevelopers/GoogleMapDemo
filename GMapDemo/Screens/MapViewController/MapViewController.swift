@@ -24,20 +24,11 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
 
-        points = ServicePlaces().getList()
-        
         DispatchQueue.main.async {
-                
             autoreleasepool {
-                
-                let realm = try! Realm()
-                let records = realm.objects(GeoPointRecord.self)
-                records.forEach {
-                    self.points.append($0.toPoint())
-                }
-                
+                self.loadPoints()
                 self.initMap()
                 self.handleRoutes()
             }
@@ -48,6 +39,10 @@ class MapViewController: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        updateMap()
+    }
+    
     func loadPoints() {
         let realm = try! Realm()
         let records = realm.objects(GeoPointRecord.self)
@@ -56,6 +51,7 @@ class MapViewController: UIViewController {
             self.points.append($0.toPoint())
         }
     }
+    
     func handleRoutes() {
         
         guard
@@ -85,7 +81,7 @@ class MapViewController: UIViewController {
                                             }
                                             
         },
-                                           failureCallBack: {_ in
+        failureCallBack: {_ in
                                             print("fail callback in route creator")
                                             
         })
